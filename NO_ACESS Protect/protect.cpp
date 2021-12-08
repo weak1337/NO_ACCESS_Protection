@@ -61,8 +61,7 @@ LONG WINAPI handler(struct _EXCEPTION_POINTERS* ExceptionInfo) {
 		DWORD old;
 		//ExceptionInformation[1] holds the invalid referenced memory address
 		uint64_t page_start = (uint64_t)ExceptionInfo->ExceptionRecord->ExceptionInformation[1];
-		while (page_start % 0x1000)
-			page_start -= 0x1;
+		page_start = page_start - (page_start % 0x1000);
 		//Before we decrypt our page we want to verify the RIP that caused the violation. If it's not valid someone trys to forcefully decrypt the pages
 		if (!rip_in_legit_module(ExceptionInfo->ContextRecord->Rip))
 			return EXCEPTION_CONTINUE_SEARCH; //Force crash the program
