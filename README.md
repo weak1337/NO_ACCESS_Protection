@@ -3,4 +3,4 @@ This is a technique that I found while reversing Halos anticheat. They encrypt t
 With this they can prevent:
 - basic signature scanning (access violation + rip check)
 - cheat engine veh debugger
-- full process duming (since you can encrypt the pages again)
+- full process dumping (since you can encrypt the pages again)
